@@ -613,8 +613,12 @@
 <script src="<?php echo site_url('template/adminlte')?>/dist/js/adminlte.min.js"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="<?php echo site_url('template/adminlte')?>/dist/js/demo.js"></script>
+<!-- CK Editor -->
+<script src="<?php echo site_url('template/adminlte')?>/bower_components/ckeditor/ckeditor.js"></script>
+
 <script>
   $(document).ready(function () {
+	  CKEDITOR.replace('artikel_isi')
     $('.sidebar-menu').tree()
   })
 </script>

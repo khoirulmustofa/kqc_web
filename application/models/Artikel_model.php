@@ -18,6 +18,15 @@ class Artikel_model extends CI_Model
         $this->db->where('artikel_judul_seo', $artikel_judul_seo);
         return $this->db->get();
     }
+    
+    // get_artikel_by_judul_seo
+    function get_artikel_by_artikel_id($artikel_id)
+    {
+        $this->db->from('artikel');
+        $this->db->join('kategori', 'kategori.kategori_id = artikel.kategori_id');
+        $this->db->where('artikel_id', $artikel_id);
+        return $this->db->get();
+    }
 
     function total_rows_artikel($cari = NULL, $kategori_id = NULL, $tag_seo = NULL)
     {

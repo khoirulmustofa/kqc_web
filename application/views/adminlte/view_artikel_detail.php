@@ -26,7 +26,7 @@
 								src="<?php echo base_url('template/').template();?>/dist/img/user6-128x128.jpg"
 								alt="User Image"> <span class="username"> <?php echo ucwords($artikel_username)?> </span> <span><i
 								class="fa fa-fw fa-clock-o"></i><?php echo tgl_indo($artikel_tanggal)?> | </span><span><i
-								class="fa fa-fw fa-eye"></i> <?php echo $artikel_view?> di lihat | </span>
+								class="fa fa-fw fa-eye"></i> <?php echo $artikel_view?> kali dilihat | </span>
 							<span>Kategori : <a href="<?php echo site_url('artikel/kategori/').$kategori_seo ?>" class="btn bg-olive btn-xs"><?php echo $kategori_nama?></a> | Tag : </span> 
 							<?php
 
