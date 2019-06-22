@@ -2,4 +2,4 @@
 
 ## KQC WEB Adalah : ##
 
-adalah Web untuk yayasan Kampung qur'an Cikarang
+adalah Web untuk yayasan Kampung qur'an Cikarang, Semoga berkah
