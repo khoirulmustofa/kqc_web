@@ -8,6 +8,8 @@ class Artikel extends CI_Controller
     function __construct()
     {
         parent::__construct();
+        // $this->load->library('image_lib');
+        $this->load->library('upload');
     }
 
     public function index()
@@ -44,9 +46,9 @@ class Artikel extends CI_Controller
     public function create()
     {
         $data = array(
-            'button' => 'Create',
+            'button' => 'Buat',
             'judul_artikel' => 'Hallo0',
-            'action' => site_url('artikel/create_action'),
+            'action' => site_url('admin/artikel/create_action'),
             'artikel_id' => set_value('artikel_id'),
             'kategori_id' => set_value('kategori_id'),
             'artikel_username' => set_value('artikel_username'),
@@ -70,33 +72,75 @@ class Artikel extends CI_Controller
         if ($this->form_validation->run() == FALSE) {
             $this->create();
         } else {
-            $data = array(
-                'kategori_id' => $this->input->post('kategori_id', TRUE),
-                'artikel_username' => $this->input->post('artikel_username', TRUE),
-                'artikel_judul' => $this->input->post('artikel_judul', TRUE),
-                'artikel_judul_seo' => $this->input->post('artikel_judul_seo', TRUE),
-                'artikel_isi' => $this->input->post('artikel_isi', TRUE),
-                'artikel_hari' => $this->input->post('artikel_hari', TRUE),
-                'artikel_tanggal' => $this->input->post('artikel_tanggal', TRUE),
-                'artikel_gambar' => $this->input->post('artikel_gambar', TRUE),
-                'artikel_view' => $this->input->post('artikel_view', TRUE),
-                'artikel_tag' => $this->input->post('artikel_tag', TRUE)
-            );
 
-            $this->Artikel_model->insert($data);
-            $this->session->set_flashdata('message', 'Create Record Success');
+            $config['upload_path'] = 'template/assets/gambar_artikel/';
+            $config['allowed_types'] = 'gif|jpg|png|jpeg|JPG|JPEG';
+            $config['encrypt_name'] = TRUE;
+            $this->upload->initialize($config);
+
+            if ($this->input->post('artikel_tag') != '') {
+                $tag_seo = $this->input->post('artikel_tag');
+                $tag = implode(',', $tag_seo);
+            } else {
+                $tag = '';
+            }
+
+            if (! empty($_FILES['artikel_gambar']['name'])) {
+                if ($this->upload->do_upload('artikel_gambar')) {
+                    $gbr = $this->upload->data();
+                    // Compress Image
+                    $config['image_library'] = 'gd2';
+                    $config['source_image'] = 'template/assets/gambar_artikel/' . $gbr['file_name'];
+                    $config['create_thumb'] = FALSE;
+                    $config['maintain_ratio'] = FALSE;
+                    $config['quality'] = '50%';
+                    $config['width'] = 10;
+                    $config['height'] = 50;
+                    $config['new_image'] = 'template/assets/gambar_artikel/' . $gbr['file_name'];
+                    $this->load->library('image_lib', $config);
+                    $this->image_lib->resize();
+
+                    $data = array(
+                        'kategori_id' => $this->input->post('kategori_id', TRUE),
+                        'artikel_username' => "Administrator",
+                        'artikel_judul' => $this->input->post('artikel_judul', TRUE),
+                        'artikel_judul_seo' => seo_title($this->input->post('artikel_judul', TRUE)),
+                        'artikel_isi' => $this->input->post('artikel_isi', TRUE),
+                        'artikel_hari' => hari_ini(date('w')),
+                        'artikel_tanggal' => date("Y-m-d H:i:s"),
+                        'artikel_gambar' => $gbr['file_name'],
+                        'artikel_view' => '0',
+                        'artikel_tag' => $tag
+                    );
+                }
+            } else {
+                $data = array(
+                    'kategori_id' => $this->input->post('kategori_id', TRUE),
+                    'artikel_username' => "Administrator",
+                    'artikel_judul' => $this->input->post('artikel_judul', TRUE),
+                    'artikel_judul_seo' => seo_title($this->input->post('artikel_judul', TRUE)),
+                    'artikel_isi' => $this->input->post('artikel_isi', TRUE),
+                    'artikel_hari' => hari_ini(date('w')),
+                    'artikel_tanggal' => date("Y-m-d H:i:s"),
+                    'artikel_view' => '0',
+                    'artikel_tag' => $tag
+                );
+            }
+
+            $this->Artikel_model->insert_artikel($data);
+            $this->session->set_flashdata('message', 'Create artikel Record Success');
             redirect(site_url('admin/artikel'));
         }
     }
-    
+
     public function update($artikel_id)
     {
         $row = $this->Artikel_model->get_artikel_by_artikel_id($artikel_id)->row();
-        
+
         if ($row) {
             $data = array(
                 'button' => 'Update',
-                'action' => site_url('artikel/update_action'),
+                'action' => site_url('admin/artikel/update_action'),
                 'artikel_id' => set_value('artikel_id', $row->artikel_id),
                 'kategori_id' => set_value('kategori_id', $row->kategori_id),
                 'artikel_username' => set_value('artikel_username', $row->artikel_username),
@@ -107,6 +151,7 @@ class Artikel extends CI_Controller
                 'artikel_tanggal' => set_value('artikel_tanggal', $row->artikel_tanggal),
                 'artikel_gambar_1' => set_value('artikel_gambar', $row->artikel_gambar),
                 'artikel_view' => set_value('artikel_view', $row->artikel_view),
+                'artikel_tag' => set_value('artikel_tag', $row->artikel_tag),
                 'tag_data' => $this->Tag_model->get_all_tag()->result()
             );
             $this->template->load('admin/admin_main_template', 'admin/view_artikel_form', $data);
@@ -116,18 +161,121 @@ class Artikel extends CI_Controller
         }
     }
 
+    public function update_action()
+    {
+        $this->_rules();
+
+        if ($this->form_validation->run() == FALSE) {
+            $this->update($this->input->post('artikel_id', TRUE));
+        } else {
+
+            $config['upload_path'] = 'template/assets/gambar_artikel/';
+            $config['allowed_types'] = 'gif|jpg|png|jpeg|JPG|JPEG';
+            $config['encrypt_name'] = TRUE;
+            $this->upload->initialize($config);
+
+            if ($this->input->post('artikel_tag') != '') {
+                $tag_seo = $this->input->post('artikel_tag');
+                $tag = implode(',', $tag_seo);
+            } else {
+                $tag = '';
+            }
+
+            if (! empty($_FILES['artikel_gambar']['name'])) {
+                if ($this->upload->do_upload('artikel_gambar')) {
+                    $gbr = $this->upload->data();
+                    // Compress Image
+                    $config['image_library'] = 'gd2';
+                    $config['source_image'] = 'template/assets/gambar_artikel/' . $gbr['file_name'];
+                    $config['create_thumb'] = FALSE;
+                    $config['maintain_ratio'] = FALSE;
+                    $config['quality'] = '50%';
+                    $config['width'] = 690;
+                    $config['height'] = 320;
+                    $config['new_image'] = 'template/assets/gambar_artikel/' . $gbr['file_name'];
+
+                    $this->load->library('image_lib', $config);
+                    $this->image_lib->resize();
+                    $this->watermark($gbr['file_name']);
+                    $this->image_lib->clear();
+
+                    $data = array(
+                        'kategori_id' => $this->input->post('kategori_id', TRUE),
+                        'artikel_username' => "Administrator",
+                        'artikel_judul' => $this->input->post('artikel_judul', TRUE),
+                        'artikel_judul_seo' => seo_title($this->input->post('artikel_judul', TRUE)),
+                        'artikel_isi' => $this->input->post('artikel_isi', TRUE),
+                        'artikel_hari' => hari_ini(date('w')),
+                        'artikel_tanggal' => date("Y-m-d H:i:s"),
+                        'artikel_gambar' => $gbr['file_name'],
+                        'artikel_view' => '0',
+                        'artikel_tag' => $tag
+                    );
+                    $path_file = 'template/assets/gambar_artikel/' . $this->input->post('artikel_gambar_1', TRUE);
+                    if (file_exists($path_file)) {
+                        unlink($path_file);
+                    }
+                }
+            } else {
+                $data = array(
+                    'kategori_id' => $this->input->post('kategori_id', TRUE),
+                    'artikel_username' => "Administrator",
+                    'artikel_judul' => $this->input->post('artikel_judul', TRUE),
+                    'artikel_judul_seo' => seo_title($this->input->post('artikel_judul', TRUE)),
+                    'artikel_isi' => $this->input->post('artikel_isi', TRUE),
+                    'artikel_hari' => hari_ini(date('w')),
+                    'artikel_tanggal' => date("Y-m-d H:i:s"),
+                    'artikel_view' => '0',
+                    'artikel_tag' => $tag
+                );
+            }
+
+            $this->Artikel_model->update_artikel($this->input->post('artikel_id', TRUE), $data);
+            $this->session->set_flashdata('message', 'Create artikel Record Success');
+            redirect(site_url('admin/artikel'));
+        }
+    }
+
+    public function delete($artikel_id)
+    {
+        $row = $this->Artikel_model->get_by_id($artikel_id);
+
+        if ($row) {
+            $this->Artikel_model->delete_artikel($artikel_id);
+            $path_file = 'template/assets/gambar_artikel/' . $row->artikel_gambar;
+            if (file_exists($path_file)) {
+                unlink($path_file);
+            }
+            $this->session->set_flashdata('message', 'Delete Record Success');
+            redirect(site_url('admin/artikel'));
+        } else {
+            $this->session->set_flashdata('message', 'Record Not Found');
+            redirect(site_url('admin/artikel'));
+        }
+    }
+
+    public function watermark($nama_file)
+    {
+        $imgConfig = array();
+        $imgConfig['image_library'] = 'GD2';
+        $imgConfig['source_image'] = 'template/assets/gambar_artikel/' . $nama_file;
+        $imgConfig['wm_text'] = 'Copyright ' . date('Y') . ' - Kampung Qur`an Cikarang';
+        $imgConfig['wm_type'] = 'text';
+        $imgConfig['wm_font_size'] = '12';
+        $this->load->library('image_lib', $imgConfig);
+
+        $this->image_lib->initialize($imgConfig);
+
+        $this->image_lib->watermark();
+    }
+
     public function _rules()
     {
-        $this->form_validation->set_rules('kategori_id', 'kategori id', 'trim|required');
-        $this->form_validation->set_rules('artikel_username', 'artikel username', 'trim|required');
-        $this->form_validation->set_rules('artikel_judul', 'artikel judul', 'trim|required');
-        $this->form_validation->set_rules('artikel_judul_seo', 'artikel judul seo', 'trim|required');
-        $this->form_validation->set_rules('artikel_isi', 'artikel isi', 'trim|required');
-        $this->form_validation->set_rules('artikel_hari', 'artikel hari', 'trim|required');
-        $this->form_validation->set_rules('artikel_tanggal', 'artikel tanggal', 'trim|required');
-        $this->form_validation->set_rules('artikel_gambar', 'artikel gambar', 'trim|required');
-        $this->form_validation->set_rules('artikel_view', 'artikel view', 'trim|required');
-        $this->form_validation->set_rules('artikel_tag', 'artikel tag', 'trim|required');
+        $this->form_validation->set_rules('kategori_id', 'kategori', 'trim|required');
+        $this->form_validation->set_rules('artikel_judul', 'Judul', 'trim|required');
+        $this->form_validation->set_rules('artikel_isi', 'Isi Artikel', 'trim|required');
+        $this->form_validation->set_rules('artikel_gambar', 'Gambar');
+        $this->form_validation->set_rules('artikel_tag', 'Tag');
 
         $this->form_validation->set_rules('artikel_id', 'artikel_id', 'trim');
         $this->form_validation->set_error_delimiters('<span class="text-danger">', '</span>');

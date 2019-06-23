@@ -56,18 +56,18 @@
 								<tr>
 									<th>No</th>
 									<th>Kategori</th>
-									<th>Artikel Username</th>
-									<th>Artikel Judul</th>
-									<th>Artikel Hari</th>
-									<th>Artikel Tanggal</th>
-									<th>Artikel View</th>
-									<th>Artikel Tag</th>
+									<th>Username</th>
+									<th>Judul</th>
+									<th>Hari</th>
+									<th>Tanggal</th>
+									<th>View</th>
+									<th>Tag</th>
 									<th>Action</th>
 								</tr><?php
         foreach ($artikel_data as $artikel) {
             ?>
                 <tr>
-									<td width="80px"><?php echo ++$start ?></td>
+									<td><?php echo ++$start ?></td>
 									<td><?php echo $artikel->kategori_nama ?></td>
 									<td><?php echo $artikel->artikel_username ?></td>
 									<td><?php echo $artikel->artikel_judul ?></td>
@@ -79,7 +79,7 @@
 				<?php
             echo anchor(site_url('admin/artikel/update/' . $artikel->artikel_id), 'Update','class="btn btn-primary btn-xs"');
             echo ' | ';
-            echo anchor(site_url('admin/artikel/' . $artikel->artikel_id), 'Delete','onclick="javasciprt: return confirm(\'Are You Sure ?\')" class="btn btn-danger btn-xs"');
+            echo anchor(site_url('admin/artikel/delete/' . $artikel->artikel_id), 'Delete','onclick="javasciprt: return confirm(\'Are You Sure ?\')" class="btn btn-danger btn-xs"');
             ?>
 			</td>
 								</tr>

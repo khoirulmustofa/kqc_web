@@ -39,8 +39,66 @@ function tgl_lengkap($tgl)
     $jam = substr($tgl, 11, 2);
     $menit = substr($tgl, 14, 2);
     $detik = substr($tgl, 17, 2);
-    
-    return $tanggal . ' ' . $bulan . ' ' . $tahun. ' ' .$jam. ':' .$menit. ':' .$detik;
+
+    return $tanggal . ' ' . $bulan . ' ' . $tahun . ' ' . $jam . ':' . $menit . ':' . $detik;
+}
+
+function seo_title($s)
+{
+    $c = array(
+        ' '
+    );
+    $d = array(
+        '-',
+        '/',
+        '\\',
+        ',',
+        '.',
+        '#',
+        ':',
+        ';',
+        '\'',
+        '"',
+        '[',
+        ']',
+        '{',
+        '}',
+        ')',
+        '(',
+        '|',
+        '`',
+        '~',
+        '!',
+        '@',
+        '%',
+        '$',
+        '^',
+        '&',
+        '*',
+        '=',
+        '?',
+        '+',
+        '–'
+    );
+    $s = str_replace($d, '', $s); // Hilangkan karakter yang telah disebutkan di array $d
+    $s = strtolower(str_replace($c, '-', $s)); // Ganti spasi dengan tanda - dan ubah hurufnya menjadi kecil semua
+    return $s;
+}
+
+function hari_ini()
+{
+    date_default_timezone_set('Asia/Jakarta'); // PHP 6 mengharuskan penyebutan timezone.
+    $seminggu = array(
+        "Minggu",
+        "Senin",
+        "Selasa",
+        "Rabu",
+        "Kamis",
+        "Jumat",
+        "Sabtu"
+    );
+    $hari = date("w");
+    return $seminggu[$hari];
 }
 
 function getBulan($bln)
@@ -83,4 +141,18 @@ function getBulan($bln)
             return "Desember";
             break;
     }
+}
+
+function cmb_dinamis($name, $table, $field, $pk, $selected, $pilihan)
+{
+    $ci = get_instance();
+    $cmb = "<select name='$name' class='form-control'> <option value='' selected> $pilihan </option>";
+    $data = $ci->db->get($table)->result();
+    foreach ($data as $d) {
+        $cmb .= "<option value='" . $d->$pk . "'";
+        $cmb .= $selected == $d->$pk ? " selected='selected'" : '';
+        $cmb .= ">" . strtoupper($d->$field) . "</option>";
+    }
+    $cmb .= "</select>";
+    return $cmb;
 }
