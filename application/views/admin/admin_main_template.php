@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<title>AdminLTE 2 | Blank Page</title>
+<title><?php echo $page?> | Panel KQC</title>
 <!-- Tell the browser to be responsive to screen width -->
 <meta
 	content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"
@@ -18,6 +18,9 @@
 <!-- Ionicons -->
 <link rel="stylesheet"
 	href="<?php echo site_url('template/adminlte')?>/bower_components/Ionicons/css/ionicons.min.css">
+<!-- Select2 -->
+<link rel="stylesheet"
+	href="<?php echo site_url('template/adminlte')?>/bower_components/select2/dist/css/select2.min.css">
 <!-- Theme style -->
 <link rel="stylesheet"
 	href="<?php echo site_url('template/adminlte')?>/dist/css/AdminLTE.min.css">
@@ -570,6 +573,9 @@
 	<!-- Bootstrap 3.3.7 -->
 	<script
 		src="<?php echo site_url('template/adminlte')?>/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+	<!-- Select2 -->
+	<script
+		src="<?php echo site_url('template/adminlte')?>/bower_components/select2/dist/js/select2.full.min.js"></script>
 	<!-- SlimScroll -->
 	<script
 		src="<?php echo site_url('template/adminlte')?>/bower_components/jquery-slimscroll/jquery.slimscroll.min.js"></script>
@@ -588,8 +594,10 @@
 
 	<script>
   $(document).ready(function () {
-	  CKEDITOR.replace('artikel_isi')
-    $('.sidebar-menu').tree()
+  	$('.select2').select2();
+  
+	<?php echo $js_extend?>
+	$('.sidebar-menu').tree()
   })
 </script>
 </body>

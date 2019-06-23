@@ -10,6 +10,7 @@ class Artikel extends CI_Controller
         parent::__construct();
         // $this->load->library('image_lib');
         $this->load->library('upload');
+        
     }
 
     public function index()
@@ -34,11 +35,13 @@ class Artikel extends CI_Controller
         $this->pagination->initialize($config);
 
         $data = array(
+            'button' => 'List',
             'artikel_data' => $artikel,
             'cari' => $cari,
             'pagination' => $this->pagination->create_links(),
             'total_rows' => $config['total_rows'],
-            'start' => $start
+            'start' => $start,
+            'page'=>'Artikel'
         );
         $this->template->load('admin/admin_main_template', 'admin/view_artikel_list', $data);
     }
@@ -59,7 +62,9 @@ class Artikel extends CI_Controller
             'artikel_tanggal' => set_value('artikel_tanggal'),
             'artikel_gambar_1' => set_value('artikel_gambar'),
             'artikel_view' => set_value('artikel_view'),
-            'tag_data' => $this->Tag_model->get_all_tag()->result()
+            'tag_data' => $this->Tag_model->get_all_tag()->result(),
+            'js_extend' => "CKEDITOR.replace('artikel_isi');",
+            'page'=>'Artikel'
         );
 
         $this->template->load('admin/admin_main_template', 'admin/view_artikel_form', $data);
@@ -94,8 +99,8 @@ class Artikel extends CI_Controller
                     $config['create_thumb'] = FALSE;
                     $config['maintain_ratio'] = FALSE;
                     $config['quality'] = '50%';
-                    $config['width'] = 10;
-                    $config['height'] = 50;
+                    $config['width'] = 200;
+                    $config['height'] = 100;
                     $config['new_image'] = 'template/assets/gambar_artikel/' . $gbr['file_name'];
                     $this->load->library('image_lib', $config);
                     $this->image_lib->resize();
@@ -152,7 +157,9 @@ class Artikel extends CI_Controller
                 'artikel_gambar_1' => set_value('artikel_gambar', $row->artikel_gambar),
                 'artikel_view' => set_value('artikel_view', $row->artikel_view),
                 'artikel_tag' => set_value('artikel_tag', $row->artikel_tag),
-                'tag_data' => $this->Tag_model->get_all_tag()->result()
+                'tag_data' => $this->Tag_model->get_all_tag()->result(),
+                'js_extend' => "CKEDITOR.replace('artikel_isi');",
+                'page'=>'Artikel'
             );
             $this->template->load('admin/admin_main_template', 'admin/view_artikel_form', $data);
         } else {

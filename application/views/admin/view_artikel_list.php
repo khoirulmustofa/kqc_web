@@ -2,12 +2,12 @@
 	<!-- Content Header (Page header) -->
 	<section class="content-header">
 		<h1>
-			Blank page <small>it all starts here</small>
+			 <?php echo $button.' '.$page;?>
 		</h1>
 		<ol class="breadcrumb">
-			<li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-			<li><a href="#">Examples</a></li>
-			<li class="active">Blank page</li>
+			<li><a href="<?php echo site_url('admin')?>"><i
+					class="fa fa-dashboard"></i>Dasboard</a></li>
+			<li class="active"><?php echo $button.' '.$page?></li>
 		</ol>
 	</section>
 
@@ -19,7 +19,7 @@
 					<div class="box-header">
 						<div class="row">
 							<div class="col-md-4">
-                <?php echo anchor(site_url('admin/artikel/create'),'Tambah Artikel Baru', 'class="btn btn-success"'); ?>
+                <?php echo anchor(site_url('admin/artikel/create'),'Tambah '.$page, 'class="btn btn-success"'); ?>
             </div>
 							<div class="col-md-4 text-center">
 								<div style="margin-top: 8px" id="message">
@@ -75,11 +75,11 @@
 									<td><?php echo $artikel->artikel_tanggal ?></td>
 									<td><?php echo $artikel->artikel_view ?></td>
 									<td><?php echo $artikel->artikel_tag ?></td>
-									<td style="text-align: center" width="200px">
+									<td style="text-align: center">
 				<?php
-            echo anchor(site_url('admin/artikel/update/' . $artikel->artikel_id), 'Update','class="btn btn-primary btn-xs"');
+            echo anchor(site_url('admin/artikel/update/' . $artikel->artikel_id), 'Update', 'class="btn btn-primary btn-xs"');
             echo ' | ';
-            echo anchor(site_url('admin/artikel/delete/' . $artikel->artikel_id), 'Delete','onclick="javasciprt: return confirm(\'Are You Sure ?\')" class="btn btn-danger btn-xs"');
+            echo anchor(site_url('admin/artikel/delete/' . $artikel->artikel_id), 'Delete', 'onclick="javasciprt: return confirm(\'Are You Sure ?\')" class="btn btn-danger btn-xs"');
             ?>
 			</td>
 								</tr>

@@ -38,6 +38,8 @@ class Artikel_model extends CI_Model
     {
         $this->db->from('artikel');
         $this->db->join('kategori', 'kategori.kategori_id = artikel.kategori_id');
+        $this->db->where('artikel.artikel_status', 'Y');
+        
         if ($kategori_id != NULL) {
             $this->db->where('artikel.kategori_id', $kategori_id);
         }
@@ -62,6 +64,8 @@ class Artikel_model extends CI_Model
     {
         $this->db->from('artikel');
         $this->db->join('kategori', 'kategori.kategori_id = artikel.kategori_id');
+        $this->db->where('artikel.artikel_status', 'Y');
+        
         if ($kategori_id != NULL) {
             $this->db->where('artikel.kategori_id', $kategori_id);
         }
