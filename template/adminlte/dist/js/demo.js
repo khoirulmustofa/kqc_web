@@ -348,7 +348,7 @@ $(function () {
     $tabPane.append($demoSettings)
     $('#control-sidebar-home-tab').after($tabPane)
 
-    setup()
+    /*setup()*/
 
     $('[data-toggle="tooltip"]').tooltip()
 })

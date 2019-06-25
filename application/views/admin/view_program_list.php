@@ -53,13 +53,17 @@
 
 						<div class="box-body table-responsive no-padding">
 							<table class="table table-bordered table-striped table-hover">
-								<tr>
-									<th>No</th>
-									<th>Nama</th>
-									<th>Kategori</th>
-									<th>Status</th>
-									<th>Action</th>
-								</tr><?php
+								<thead style="font-size: medium;">
+									<tr>
+										<th>No</th>
+										<th>Nama</th>
+										<th>Kategori</th>
+										<th>Status</th>
+										<th style="text-align:center">Action</th>
+									</tr>
+								</thead>
+								<tbody>
+								<?php
         foreach ($program_data as $program) {
             ?>
                 <tr>
@@ -78,6 +82,7 @@
                 <?php
         }
         ?>
+        </tbody>
         </table>
 						</div>
 					</div>

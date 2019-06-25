@@ -46,7 +46,7 @@ class Artikel extends CI_Controller
             return;
         }
 
-        $this->template->load(template() . '/main_template', template() . '/view_artikel', $data);
+        $this->template->load(template() . '/main_template', template() . '/view_artikel_list', $data);
     }
 
     public function detail($artikel_judul_seo)
@@ -121,7 +121,7 @@ class Artikel extends CI_Controller
             return;
         }
 
-        $this->template->load(template() . '/main_template', template() . '/view_artikel', $data);
+        $this->template->load(template() . '/main_template', template() . '/view_artikel_list', $data);
     }
     
     public function tag($tag_seo)
@@ -162,7 +162,7 @@ class Artikel extends CI_Controller
             return;
         }
         
-        $this->template->load(template() . '/main_template', template() . '/view_artikel', $data);
+        $this->template->load(template() . '/main_template', template() . '/view_artikel_list', $data);
     }
 
     public function insert_komentar()

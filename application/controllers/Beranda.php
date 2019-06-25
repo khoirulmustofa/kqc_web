@@ -13,7 +13,9 @@ class Beranda extends CI_Controller
     public function index()
     {
         $data = array(
-            'page' => "manajemen"
+            'menu' => "Home",
+            'page'=>"Beranda",
+            
         );
         $this->template->load(template() . '/main_template', template() . '/view_beranda', $data);
     }

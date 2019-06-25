@@ -24,6 +24,19 @@ class Program_model extends CI_Model
         return $this->db->count_all_results();
     }
 
+    function get_program_by_kategori($limit, $start = 0, $program_kategori)
+    {
+        $this->db->where('program_kategori', $program_kategori);
+        $this->db->limit($limit, $start);
+        return $this->db->get('program');
+    }
+    
+    function get_total_rows_program_by_kategori($program_kategori) {
+        $this->db->where('program_kategori', $program_kategori);
+        $this->db->from('program');
+        return $this->db->count_all_results();
+    }
+
     function get_limit_data_program($limit, $start = 0, $cari = NULL)
     {
         $this->db->order_by('program_id', 'ASC');

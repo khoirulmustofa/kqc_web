@@ -13,10 +13,13 @@ $route['visi-misi']='tentang_kami/visimisi';
 
 // Program
 $route['pendidikan-dakwah']='program/pendidikan_dakwah';
+$route['sosial-kemanusian']='program/sosial_kemanusiaan';
+$route['pengembangan-masyarakat']='program/pengembangan_masyarakat';
 //$route['seeder']='artikel/seeder';
 
 //Sedekah
 $route['cara-sedekah']='sedekah/cara_sedekah';
+
 
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;

@@ -34,7 +34,8 @@
 						</div>						
 					</div>
 				</div>
-				<div style="text-align: center; background-color: #fff;"><ul class="pagination" style="margin: 5px"><li class="active"><a>1</a></li><li><a href="http://localhost:81/kqc_web/artikel/?start=5" data-ci-pagination-page="2">2</a></li><li><a href="http://localhost:81/kqc_web/artikel/?start=10" data-ci-pagination-page="3">3</a></li><li><a href="http://localhost:81/kqc_web/artikel/?start=5" data-ci-pagination-page="2" rel="next">Next</a></li><li><a href="http://localhost:81/kqc_web/artikel/?start=60" data-ci-pagination-page="13">Last</a></li></ul></div>
+				<br>
+				<div style="text-align: center; background-color: #fff;"><?php echo $pagination ?></div>
 			</div>
 		
 			<?php $this->load->view('adminlte/view_highlight');?>

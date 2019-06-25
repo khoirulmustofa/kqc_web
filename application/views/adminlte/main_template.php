@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<title>KQC | Top Navigation</title>
+<title>KQC | <?php echo $page?></title>
 <!-- Tell the browser to be responsive to screen width -->
 <meta
 	content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"
@@ -80,8 +80,8 @@
 								<ul class="dropdown-menu" role="menu">
 									<li><a href="<?php echo site_url('pendidikan-dakwah')?>">Pendidikan
 											dan Dakwah</a></li>
-									<li><a href="#">Sosial dan Kemanusian</a></li>
-									<li><a href="#">Pengembangan Masyarakat</a></li>
+									<li><a href="<?php echo site_url('sosial-kemanusian')?>">Sosial dan Kemanusian</a></li>
+									<li><a href="<?php echo site_url('pengembangan-masyarakat')?>">Pengembangan Masyarakat</a></li>
 								</ul></li>
 							<li class="dropdown"><a href="#" class="dropdown-toggle"
 								data-toggle="dropdown">SEDEKAH <span class="caret"></span></a>
