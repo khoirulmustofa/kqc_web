@@ -121,8 +121,7 @@
 					</div>
 				</div>
 			</div>
-			<?php $this->load->view('adminlte/sidebar');?>	
-			<?php $this->load->view('adminlte/view_highlight');?>			
+			<?php $this->load->view('adminlte/view_sidebar');?>				
 		</div>
 	</section>
 </div>

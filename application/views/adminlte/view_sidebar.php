@@ -24,7 +24,7 @@
 		<div class="box-body">
 			<div class="box-footer no-padding">
               <ul class="nav nav-stacked">
-              <?php foreach ($kategori_data->result() as $kategori) { ?>
+              <?php foreach ($kategori_data as $kategori) { ?>
                 <li ><a class="btn bg-olive" href="<?php echo site_url('artikel/kategori/').$kategori->kategori_seo ?>"><?php echo ucwords($kategori->kategori_nama)?></a></li>
                 <?php }?>               
               </ul>
@@ -67,7 +67,7 @@
 				</ol>
 				<div class="carousel-inner">
 					<div class="item active">
-						<img src="<?php echo site_url('template/assets/hl1.png')?>"
+						<img class="img-responsive" style="width: 100%;" src="<?php echo site_url('template/assets/hl1.png')?>"
 							alt="First slide">
 
 						<div class="carousel-caption">
@@ -80,7 +80,7 @@
 						</div>
 					</div>
 					<div class="item">
-						<img src="<?php echo site_url('template/assets/hl1.png')?>"
+						<img  class="img-responsive" style="width: 100%;"src="<?php echo site_url('template/assets/hl1.png')?>"
 							alt="Second slide">
 
 						<div class="carousel-caption">
@@ -93,7 +93,7 @@
 						</div>
 					</div>
 					<div class="item">
-						<img src="<?php echo site_url('template/assets/hl1.png')?>"
+						<img class="img-responsive" style="width: 100%;" src="<?php echo site_url('template/assets/hl1.png')?>"
 							alt="Third slide">
 
 						<div class="carousel-caption">

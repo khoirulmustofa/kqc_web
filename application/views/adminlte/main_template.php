@@ -63,7 +63,7 @@
 					<div class="collapse navbar-collapse pull-left"
 						id="navbar-collapse">
 						<ul class="nav navbar-nav">
-							<li><a href="<?php echo site_url('beranda')?>">BERANDA</a></li>
+							<li <?php echo  $menu=="Home" ? 'class="active"' :''?>><a href="<?php echo site_url('beranda')?>">BERANDA</a></li>
 							<li class="dropdown"><a href="#" class="dropdown-toggle"
 								data-toggle="dropdown">TENTANG KAMI <span class="caret"></span></a>
 								<ul class="dropdown-menu" role="menu">
@@ -80,17 +80,21 @@
 								<ul class="dropdown-menu" role="menu">
 									<li><a href="<?php echo site_url('pendidikan-dakwah')?>">Pendidikan
 											dan Dakwah</a></li>
-									<li><a href="<?php echo site_url('sosial-kemanusian')?>">Sosial dan Kemanusian</a></li>
-									<li><a href="<?php echo site_url('pengembangan-masyarakat')?>">Pengembangan Masyarakat</a></li>
+									<li><a href="<?php echo site_url('sosial-kemanusian')?>">Sosial
+											dan Kemanusian</a></li>
+									<li><a href="<?php echo site_url('pengembangan-masyarakat')?>">Pengembangan
+											Masyarakat</a></li>
 								</ul></li>
 							<li class="dropdown"><a href="#" class="dropdown-toggle"
 								data-toggle="dropdown">SEDEKAH <span class="caret"></span></a>
 								<ul class="dropdown-menu" role="menu">
-									<li><a href="<?php echo site_url('cara-sedekah')?>">Cara Sedekah</a></li>
+									<li><a href="<?php echo site_url('cara-sedekah')?>">Cara
+											Sedekah</a></li>
 									<li><a href="#">Konfirmasi Sedekah</a></li>
 									<li><a href="#">Jemput Sedekah</a></li>
 								</ul></li>
-							<li class="active"><a href="<?php echo site_url('artikel')?>">ARTIKEL</a></li>
+							<li <?php echo  $menu=="Artikel" ? 'class="active"' :''?>><a
+								href="<?php echo site_url('artikel')?>">ARTIKEL</a></li>
 							<li><a href="#">KQC SCHOOL</a></li>
 							<li><a href="<?php echo site_url('hubungi_kami')?>">HUBUNGI KAMI</a></li>
 
@@ -175,7 +179,7 @@
 					<div class="col-md-6">
 						<div class="row">
 							<div class="col-md-6">
-							<h3 class="box-title">Modul</h3>
+								<h3 class="box-title">Modul</h3>
 								<ul>
 									<li>Phasellus iaculis neque</li>
 									<li>Purus sodales ultricies</li>
@@ -184,7 +188,7 @@
 								</ul>
 							</div>
 							<div class="col-md-6">
-							<h3 class="box-title">Unordered List</h3>
+								<h3 class="box-title">Unordered List</h3>
 								<ul>
 									<li>Phasellus iaculis neque</li>
 									<li>Purus sodales ultricies</li>
@@ -195,11 +199,13 @@
 						</div>
 						<!-- /.row -->
 					</div>
-				</div>				
-				<marquee><strong>Copyright &copy; 2014-2016 <a href="https://adminlte.io">Almsaeed
-						Studio</a>.
-				</strong> All rights reserved.</marquee>
-				
+				</div>
+				<marquee>
+					<strong>Copyright &copy; 2014-2016 <a href="https://adminlte.io">Almsaeed
+							Studio</a>.
+					</strong> All rights reserved.
+				</marquee>
+
 			</div>
 			<!-- /.container -->
 		</footer>

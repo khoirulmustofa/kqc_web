@@ -5,35 +5,32 @@
 				<div id="carousel-example-generic" class="carousel slide"
 					data-ride="carousel">
 					<ol class="carousel-indicators">
-						<li data-target="#carousel-example-generic" data-slide-to="0"
-							class="active"></li>
-						<li data-target="#carousel-example-generic" data-slide-to="1"
-							class=""></li>
-						<li data-target="#carousel-example-generic" data-slide-to="2"
-							class=""></li>
+					<?php
+					foreach ($carousel_data as $generic) {
+        ++ $start_generic;
+        ?>
+						<li data-target="#carousel-example-generic" data-slide-to="<?php echo $start_generic?>"
+							class="<?php echo $start_generic == 1 ? 'active' : ''; ?>"></li>
+							<?php
+    }
+    ?>
 					</ol>
 					<div class="carousel-inner">
-						<div class="item active">
+					<?php
+    foreach ($carousel_data as $carousel) {
+        ++ $start;
+        ?>
+						<div class="<?php echo $start == 1 ? 'item active' : 'item'; ?>">
 							<img style="max-height: 50vh; width: 100%;"
-								src="<?php echo site_url('template/assets/rumah_tahfids.jpg')?>"
-								alt="First slide">
-
-							<div class="carousel-caption">First Slide</div>
+								src="<?php echo site_url('template/assets/gambar_carousel/').$carousel->carousel_gambar?>">
+							<a class="carousel-caption btn-block btn-success btn-flat">
+							<?php echo ucwords($carousel->carousel_nama)?>
+								</a>
 						</div>
-						<div class="item">
-							<img style="max-height: 50vh; width: 100%;"
-								src="<?php echo site_url('template/assets/rumah_tahfids.jpg')?>"
-								alt="First slide">
-
-							<div class="carousel-caption">Second Slide</div>
-						</div>
-						<div class="item">
-							<img style="max-height: 50vh; width: 100%;"
-								src="<?php echo site_url('template/assets/rumah_tahfids.jpg')?>"
-								alt="First slide">
-
-							<div class="carousel-caption">Third Slide</div>
-						</div>
+						<?php
+    }
+    ?>
+						
 					</div>
 					<a class="left carousel-control" href="#carousel-example-generic"
 						data-slide="prev"> <span class="fa fa-angle-left"></span>
@@ -46,7 +43,7 @@
 		</div>
 
 		<div class="row">
-			<div class="col-md-3 col-sm-6 col-xs-12 hover-mouse">
+			<div class="col-md-3 col-sm-6 col-xs-12">
 				<div class="info-box">
 					<span class="info-box-icon bg-aqua"><i
 						class="ion ion-ios-gear-outline"></i></span>
@@ -61,7 +58,8 @@
 			<!-- /.col -->
 			<div class="col-md-3 col-sm-6 col-xs-12">
 				<div class="info-box">
-					<span class="info-box-icon bg-red"><i class="fa fa-google-plus"></i></span>
+					<span class="info-box-icon bg-red"><i
+						class="fa fa-fw fa-graduation-cap"></i></span>
 
 					<div class="info-box-content">
 						<h2>KQC School</h2>
@@ -75,16 +73,14 @@
 			<!-- fix for small devices only -->
 			<div class="clearfix visible-sm-block"></div>
 
-			<div class="col-md-3 col-sm-6 col-xs-12">
+			<div class="col-md-3 col-sm-6 col-xs-12 ">
 				<div class="info-box">
 					<span class="info-box-icon bg-green"><i
 						class="ion ion-ios-cart-outline"></i></span>
 
 					<div class="info-box-content">
-						<span class="info-box-text">Sales</span> <span
-							class="info-box-number">760</span>
+						<h2>KQC Mart</h2>
 					</div>
-					<!-- /.info-box-content -->
 				</div>
 				<!-- /.info-box -->
 			</div>
@@ -95,10 +91,8 @@
 						class="ion ion-ios-people-outline"></i></span>
 
 					<div class="info-box-content">
-						<span class="info-box-text">New Members</span> <span
-							class="info-box-number">2,000</span>
+						<h2>Kajian</h2>
 					</div>
-					<!-- /.info-box-content -->
 				</div>
 				<!-- /.info-box -->
 			</div>
@@ -108,210 +102,88 @@
 			<div class="col-md-12"
 				style="text-align: center; border-bottom: 2px solid #00a65a;">
 				<h1>
-					<strong>KQC</strong>
+					KABAR <strong>KQC</strong>
 				</h1>
 				<h4>Alqur'an Is My Life</h4>
 			</div>
 		</div>
 		<div class="row">
+		<?php
+foreach ($artikel_kategori_kabar_data as $artikel_kategori_kabar) {
+    ?>
 			<div class="col-md-4">
 				<div class="box box-solid">
-					<div class="box-header with-border">
-						<i class="fa fa-text-width"></i>
 
-						<h3 class="box-title">Unordered List</h3>
+					<div class="box-header with-border">
+						<a
+							href="<?php echo site_url('artikel/').$artikel_kategori_kabar->artikel_judul_seo ?>"><h3
+								class="box-title text-green"><?php echo ucwords($artikel_kategori_kabar->artikel_judul)?></h3></a>
 					</div>
+
 					<!-- /.box-header -->
 					<div class="box-body">
-						<ul>
-							<li>Lorem ipsum dolor sit amet</li>
-							<li>Consectetur adipiscing elit</li>
-							<li>Integer molestie lorem at massa</li>
-							<li>Facilisis in pretium nisl aliquet</li>
-							<li>Nulla volutpat aliquam velit
-								<ul>
-									<li>Phasellus iaculis neque</li>
-									<li>Purus sodales ultricies</li>
-									<li>Vestibulum laoreet porttitor sem</li>
-									<li>Ac tristique libero volutpat at</li>
-								</ul>
-							</li>
-							<li>Faucibus porta lacus fringilla vel</li>
-							<li>Aenean sit amet erat nunc</li>
-							<li>Eget porttitor lorem</li>
-						</ul>
+						<a
+							href="<?php echo site_url('artikel/').$artikel_kategori_kabar->artikel_judul_seo ?>"><img
+							class="img-responsive"
+							src="<?php echo site_url('template/assets/gambar_artikel/').$artikel_kategori_kabar->artikel_gambar?>"></a>
 					</div>
-					<!-- /.box-body -->
+					<div class="box-footer">
+					<?php echo limit_words($artikel_kategori_kabar->artikel_isi, 25)." ..." ?>
+					<a class="badge bg-green"
+							href="<?php echo site_url('artikel/').$artikel_kategori_kabar->artikel_judul_seo ?>">Baca
+							Detail</a>
+					</div>
 				</div>
 				<!-- /.box -->
 			</div>
-			<div class="col-md-4">
-				<div class="box box-solid">
-					<div class="box-header with-border">
-						<i class="fa fa-text-width"></i>
-
-						<h3 class="box-title">Unordered List</h3>
-					</div>
-					<!-- /.box-header -->
-					<div class="box-body">
-						<ul>
-							<li>Lorem ipsum dolor sit amet</li>
-							<li>Consectetur adipiscing elit</li>
-							<li>Integer molestie lorem at massa</li>
-							<li>Facilisis in pretium nisl aliquet</li>
-							<li>Nulla volutpat aliquam velit
-								<ul>
-									<li>Phasellus iaculis neque</li>
-									<li>Purus sodales ultricies</li>
-									<li>Vestibulum laoreet porttitor sem</li>
-									<li>Ac tristique libero volutpat at</li>
-								</ul>
-							</li>
-							<li>Faucibus porta lacus fringilla vel</li>
-							<li>Aenean sit amet erat nunc</li>
-							<li>Eget porttitor lorem</li>
-						</ul>
-					</div>
-					<!-- /.box-body -->
-				</div>
-				<!-- /.box -->
-			</div>
-			<div class="col-md-4">
-				<div class="box box-solid">
-					<div class="box-header with-border">
-						<i class="fa fa-text-width"></i>
-
-						<h3 class="box-title">Unordered List</h3>
-					</div>
-					<!-- /.box-header -->
-					<div class="box-body">
-						<ul>
-							<li>Lorem ipsum dolor sit amet</li>
-							<li>Consectetur adipiscing elit</li>
-							<li>Integer molestie lorem at massa</li>
-							<li>Facilisis in pretium nisl aliquet</li>
-							<li>Nulla volutpat aliquam velit
-								<ul>
-									<li>Phasellus iaculis neque</li>
-									<li>Purus sodales ultricies</li>
-									<li>Vestibulum laoreet porttitor sem</li>
-									<li>Ac tristique libero volutpat at</li>
-								</ul>
-							</li>
-							<li>Faucibus porta lacus fringilla vel</li>
-							<li>Aenean sit amet erat nunc</li>
-							<li>Eget porttitor lorem</li>
-						</ul>
-					</div>
-					<!-- /.box-body -->
-				</div>
-				<!-- /.box -->
-			</div>
+			<?php
+}
+?>
+						
 		</div>
-		
+
 		<div class="row" style="margin-bottom: 10px;">
 			<div class="col-md-12"
 				style="text-align: center; border-bottom: 2px solid #00a65a;">
 				<h1>
 					<strong>INSPIRASI</strong>
 				</h1>
-				
+
 			</div>
 		</div>
 		<div class="row">
+			<?php
+foreach ($artikel_kategori_inspirasi_data as $artikel_kategori_inspirasi) {
+    ?>
 			<div class="col-md-4">
 				<div class="box box-solid">
-					<div class="box-header with-border">
-						<i class="fa fa-text-width"></i>
 
-						<h3 class="box-title">Unordered List</h3>
+					<div class="box-header with-border">
+						<a
+							href="<?php echo site_url('artikel/').$artikel_kategori_inspirasi->artikel_judul_seo ?>">
+							<h3 class="box-title text-aqua"><?php echo ucwords($artikel_kategori_inspirasi->artikel_judul)?></h3>
+						</a>
 					</div>
+
 					<!-- /.box-header -->
 					<div class="box-body">
-						<ul>
-							<li>Lorem ipsum dolor sit amet</li>
-							<li>Consectetur adipiscing elit</li>
-							<li>Integer molestie lorem at massa</li>
-							<li>Facilisis in pretium nisl aliquet</li>
-							<li>Nulla volutpat aliquam velit
-								<ul>
-									<li>Phasellus iaculis neque</li>
-									<li>Purus sodales ultricies</li>
-									<li>Vestibulum laoreet porttitor sem</li>
-									<li>Ac tristique libero volutpat at</li>
-								</ul>
-							</li>
-							<li>Faucibus porta lacus fringilla vel</li>
-							<li>Aenean sit amet erat nunc</li>
-							<li>Eget porttitor lorem</li>
-						</ul>
+						<a
+							href="<?php echo site_url('artikel/').$artikel_kategori_inspirasi->artikel_judul_seo ?>"><img
+							class="img-responsive"
+							src="<?php echo site_url('template/assets/gambar_artikel/').$artikel_kategori_inspirasi->artikel_gambar?>"></a>
 					</div>
-					<!-- /.box-body -->
+					<div class="box-footer">
+					<?php echo limit_words($artikel_kategori_inspirasi->artikel_isi, 25)." ..." ?>
+					<a class="badge bg-aqua"
+							href="<?php echo site_url('artikel/').$artikel_kategori_inspirasi->artikel_judul_seo ?>">Baca
+							Detail</a>
+					</div>
 				</div>
 				<!-- /.box -->
 			</div>
-			<div class="col-md-4">
-				<div class="box box-solid">
-					<div class="box-header with-border">
-						<i class="fa fa-text-width"></i>
-
-						<h3 class="box-title">Unordered List</h3>
-					</div>
-					<!-- /.box-header -->
-					<div class="box-body">
-						<ul>
-							<li>Lorem ipsum dolor sit amet</li>
-							<li>Consectetur adipiscing elit</li>
-							<li>Integer molestie lorem at massa</li>
-							<li>Facilisis in pretium nisl aliquet</li>
-							<li>Nulla volutpat aliquam velit
-								<ul>
-									<li>Phasellus iaculis neque</li>
-									<li>Purus sodales ultricies</li>
-									<li>Vestibulum laoreet porttitor sem</li>
-									<li>Ac tristique libero volutpat at</li>
-								</ul>
-							</li>
-							<li>Faucibus porta lacus fringilla vel</li>
-							<li>Aenean sit amet erat nunc</li>
-							<li>Eget porttitor lorem</li>
-						</ul>
-					</div>
-					<!-- /.box-body -->
-				</div>
-				<!-- /.box -->
-			</div>
-			<div class="col-md-4">
-				<div class="box box-solid">
-					<div class="box-header with-border">
-						<i class="fa fa-text-width"></i>
-
-						<h3 class="box-title">Unordered List</h3>
-					</div>
-					<!-- /.box-header -->
-					<div class="box-body">
-						<ul>
-							<li>Lorem ipsum dolor sit amet</li>
-							<li>Consectetur adipiscing elit</li>
-							<li>Integer molestie lorem at massa</li>
-							<li>Facilisis in pretium nisl aliquet</li>
-							<li>Nulla volutpat aliquam velit
-								<ul>
-									<li>Phasellus iaculis neque</li>
-									<li>Purus sodales ultricies</li>
-									<li>Vestibulum laoreet porttitor sem</li>
-									<li>Ac tristique libero volutpat at</li>
-								</ul>
-							</li>
-							<li>Faucibus porta lacus fringilla vel</li>
-							<li>Aenean sit amet erat nunc</li>
-							<li>Eget porttitor lorem</li>
-						</ul>
-					</div>
-					<!-- /.box-body -->
-				</div>
-				<!-- /.box -->
-			</div>
+			<?php
+}
+?>			
 		</div>
 	</section>
 </div>

@@ -28,8 +28,8 @@ class Artikel extends CI_Controller
 
         $config['per_page'] = 10;
         $config['page_query_string'] = TRUE;
-        $config['total_rows'] = $this->Artikel_model->total_rows_artikel($cari, NULL, NULL);
-        $artikel = $this->Artikel_model->get_limit_data_artikel($config['per_page'], $start, $cari, NULL, NULL)->result();
+        $config['total_rows'] = $this->Artikel_model->total_rows_artikel_admin($cari);
+        $artikel = $this->Artikel_model->get_limit_data_artikel_admin($config['per_page'], $start, $cari)->result();
 
         $this->load->library('pagination');
         $this->pagination->initialize($config);
@@ -99,8 +99,8 @@ class Artikel extends CI_Controller
                     $config['create_thumb'] = FALSE;
                     $config['maintain_ratio'] = FALSE;
                     $config['quality'] = '50%';
-                    $config['width'] = 200;
-                    $config['height'] = 100;
+                    $config['width'] = 690;
+                    $config['height'] = 320;
                     $config['new_image'] = 'template/assets/gambar_artikel/' . $gbr['file_name'];
                     $this->load->library('image_lib', $config);
                     $this->image_lib->resize();

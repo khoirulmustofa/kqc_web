@@ -70,7 +70,7 @@
 						<div class="box-footer">
 							<input type="hidden" name="program_id"
 								value="<?php echo $program_id; ?>" />
-							<button type="submit" class="btn btn-success"><?php echo $button ?></button>
+							<button type="submit" class="btn btn-success pull-right"><?php echo $button.' '.$page ?></button>
 							<a href="<?php echo site_url('admin/program') ?>"
 								class="btn btn-default">Batal</a>
 						</div>

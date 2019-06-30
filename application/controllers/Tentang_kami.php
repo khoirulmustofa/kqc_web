@@ -13,7 +13,8 @@ class Tentang_kami extends CI_Controller
     public function manajemen()
     {
         $data = array(
-            'page' => "manajemen"
+            'menu' => "Tentang_kami",
+            'page' => "Manajemen"
         );
         $this->template->load(template() . '/main_template', template() . '/view_manajemen', $data);
     }
@@ -21,7 +22,8 @@ class Tentang_kami extends CI_Controller
     public function sejarah()
     {
         $data = array(
-            'page' => "manajemen"
+            'menu' => "Tentang_kami",
+            'page' => "Manajemen"
         );
         $this->template->load(template() . '/main_template', template() . '/view_sejarah', $data);
     }
@@ -29,7 +31,8 @@ class Tentang_kami extends CI_Controller
     public function visimisi()
     {
         $data = array(
-            'page' => "manajemen"
+            'menu' => "Tentang_kami",
+            'page' => "Manajemen"
         );
         $this->template->load(template() . '/main_template', template() . '/view_visimisi', $data);
     }
@@ -37,7 +40,8 @@ class Tentang_kami extends CI_Controller
     public function methode()
     {
         $data = array(
-            'page' => "manajemen"
+            'menu' => "Tentang_kami",
+            'page' => "Manajemen"
         );
         $this->template->load(template() . '/main_template', template() . '/view_manajemen', $data);
     }
@@ -45,7 +49,8 @@ class Tentang_kami extends CI_Controller
     public function legal_formal()
     {
         $data = array(
-            'page' => "manajemen"
+            'menu' => "Tentang_kami",
+            'page' => "Manajemen"
         );
         $this->template->load(template() . '/main_template', template() . '/view_manajemen', $data);
     }
@@ -53,7 +58,8 @@ class Tentang_kami extends CI_Controller
     public function salam_pimpinan()
     {
         $data = array(
-            'page' => "manajemen"
+            'menu' => "Tentang_kami",
+            'page' => "Manajemen"
         );
         $this->template->load(template() . '/main_template', template() . '/view_manajemen', $data);
     }

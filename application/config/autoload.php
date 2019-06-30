@@ -154,5 +154,6 @@ $autoload['model'] = array(
     'Komentar_model',
     'Kategori_model',
     'Tag_model',
-    'Program_model'
+    'Program_model',
+    'Carousel_model'
 );

@@ -18,7 +18,7 @@
 				</ol>
 				<div class="carousel-inner">
 					<div class="item active">
-						<img src="<?php echo site_url('template/assets/hl1.png')?>"
+						<img class="img-responsive" style="width: 100%;" src="<?php echo site_url('template/assets/hl1.png')?>"
 							alt="First slide">
 
 						<div class="carousel-caption">
@@ -31,7 +31,7 @@
 						</div>
 					</div>
 					<div class="item">
-						<img src="<?php echo site_url('template/assets/hl1.png')?>"
+						<img class="img-responsive" style="width: 100%;" src="<?php echo site_url('template/assets/hl1.png')?>"
 							alt="Second slide">
 
 						<div class="carousel-caption">
@@ -44,7 +44,7 @@
 						</div>
 					</div>
 					<div class="item">
-						<img src="<?php echo site_url('template/assets/hl1.png')?>"
+						<img class="img-responsive" style="width: 100%;" src="<?php echo site_url('template/assets/hl1.png')?>"
 							alt="Third slide">
 
 						<div class="carousel-caption">

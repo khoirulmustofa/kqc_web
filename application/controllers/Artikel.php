@@ -27,19 +27,21 @@ class Artikel extends CI_Controller
         $config['page_query_string'] = TRUE;
         $config['total_rows'] = $this->Artikel_model->total_rows_artikel($cari, NULL);
         $artikel = $this->Artikel_model->get_limit_data_artikel($config['per_page'], $start, $cari, NULL);
-        $kategori = $this->Kategori_model->get_all_kategori();
+        $kategori = $this->Kategori_model->get_all_kategori()->result();
+        $tag = $this->Tag_model->get_all_tag()->result();
         $this->load->library('pagination');
         $this->pagination->initialize($config);
         $data = array(
-            'page' => "artikel_list",
-            'kategori_data' => $kategori,
             'artikel_data' => $artikel,
             'pagination' => $this->pagination->create_links(),
             'total_rows' => $config['total_rows'],
             'start' => $start,
             'cari' => $cari,
             'action' => site_url('artikel'),
-            'tag_data' => $this->Tag_model->get_all_tag()->result()
+            'tag_data' => $tag,
+            'kategori_data' => $kategori,
+            'menu' => "Artikel",
+            'page' => "List Artikel"
         );
         if ($config['total_rows'] < 1) {
             $this->template->load(template() . '/main_template', template() . '/view_artikel_empty', $data);
@@ -52,9 +54,12 @@ class Artikel extends CI_Controller
     public function detail($artikel_judul_seo)
     {
         $row = $this->Artikel_model->get_artikel_by_judul_seo($artikel_judul_seo)->row();
+
+        $kategori = $this->Kategori_model->get_all_kategori()->result();
+        $tag = $this->Tag_model->get_all_tag()->result();
+
         if ($row) {
             $data = array(
-                'page' => "artikel_detail",
                 'artikel_id' => $row->artikel_id,
                 'kategori_id' => $row->kategori_id,
                 'artikel_username' => $row->artikel_username,
@@ -70,9 +75,11 @@ class Artikel extends CI_Controller
                 'kategori_seo' => $row->kategori_seo,
                 'cari' => NULL,
                 'action' => site_url('artikel'),
-                'tag_data' => $this->Tag_model->get_all_tag()->result(),
-                'kategori_data' => $this->Kategori_model->get_all_kategori(),
-                'komentar_data' => $this->Komentar_model->get_komentar_by_artikel_id($row->artikel_id)
+                'tag_data' => $tag,
+                'kategori_data' => $kategori,
+                'komentar_data' => $this->Komentar_model->get_komentar_by_artikel_id($row->artikel_id),
+                'menu' => "Artikel",
+                'page' => $row->artikel_judul
             );
             $this->template->load(template() . '/main_template', template() . '/view_artikel_detail', $data);
         } else {
@@ -102,19 +109,21 @@ class Artikel extends CI_Controller
         $config['page_query_string'] = TRUE;
         $config['total_rows'] = $this->Artikel_model->total_rows_artikel($cari, $kategori_id);
         $artikel = $this->Artikel_model->get_limit_data_artikel($config['per_page'], $start, $cari, $kategori_id);
-        $kategori = $this->Kategori_model->get_all_kategori();
+        $kategori = $this->Kategori_model->get_all_kategori()->result();
+        $tag = $this->Tag_model->get_all_tag()->result();
         $this->load->library('pagination');
         $this->pagination->initialize($config);
         $data = array(
-            'page' => "artikel_list",
-            'kategori_data' => $kategori,
+            'menu' => "Artikel",
+            'page' => "Kategori",
             'artikel_data' => $artikel,
             'pagination' => $this->pagination->create_links(),
             'total_rows' => $config['total_rows'],
             'start' => $start,
             'cari' => $cari,
             'action' => site_url('artikel/kategori/' . $q_kategori->kategori_seo),
-            'tag_data' => $this->Tag_model->get_all_tag()->result()
+            'tag_data' => $tag,
+            'kategori_data' => $kategori
         );
         if ($config['total_rows'] < 1) {
             $this->template->load(template() . '/main_template', template() . '/view_artikel_empty', $data);
@@ -123,13 +132,12 @@ class Artikel extends CI_Controller
 
         $this->template->load(template() . '/main_template', template() . '/view_artikel_list', $data);
     }
-    
+
     public function tag($tag_seo)
     {
-                
         $cari = urldecode($this->input->get('cari', TRUE));
         $start = intval($this->input->get('start'));
-        
+
         if ($cari != '') {
             $config['base_url'] = base_url() . 'artikel/tag/' . $tag_seo . '?cari=' . urlencode($cari);
             $config['first_url'] = base_url() . 'artikel/tag/' . $tag_seo . '?cari=' . urlencode($cari);
@@ -137,15 +145,16 @@ class Artikel extends CI_Controller
             $config['base_url'] = base_url() . 'artikel/tag/' . $tag_seo . '/';
             $config['first_url'] = base_url() . 'artikel/tag/' . $tag_seo . '/';
         }
-        
+
         $config['per_page'] = 5;
         $config['page_query_string'] = TRUE;
-        $config['total_rows'] = $this->Artikel_model->total_rows_artikel($cari, NULL,$tag_seo);
-        $artikel = $this->Artikel_model->get_limit_data_artikel($config['per_page'], $start, $cari, NULL,$tag_seo);
-        $kategori = $this->Kategori_model->get_all_kategori();
+        $config['total_rows'] = $this->Artikel_model->total_rows_artikel($cari, NULL, $tag_seo);
+        $artikel = $this->Artikel_model->get_limit_data_artikel($config['per_page'], $start, $cari, NULL, $tag_seo);
+        $kategori = $this->Kategori_model->get_all_kategori()->result();
+        $tag = $this->Tag_model->get_all_tag()->result();
         $this->load->library('pagination');
         $this->pagination->initialize($config);
-        
+
         $data = array(
             'page' => "artikel_list",
             'kategori_data' => $kategori,
@@ -155,13 +164,14 @@ class Artikel extends CI_Controller
             'start' => $start,
             'cari' => $cari,
             'action' => site_url('artikel/tag/' . $tag_seo),
-            'tag_data' => $this->Tag_model->get_all_tag()->result()
+            'tag_data' => $tag,
+            'kategori_data' => $kategori
         );
         if ($config['total_rows'] < 1) {
             $this->template->load(template() . '/main_template', template() . '/view_artikel_empty', $data);
             return;
         }
-        
+
         $this->template->load(template() . '/main_template', template() . '/view_artikel_list', $data);
     }
 

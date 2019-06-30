@@ -85,8 +85,8 @@ class Program extends CI_Controller
                     $config['create_thumb'] = FALSE;
                     $config['maintain_ratio'] = FALSE;
                     $config['quality'] = '50%';
-                    $config['width'] = 200;
-                    $config['height'] = 100;
+                    $config['width'] = 340;
+                    $config['height'] = 360;
                     $config['new_image'] = 'template/assets/gambar_program/' . $gbr['file_name'];
                     $this->load->library('image_lib', $config);
                     $this->image_lib->resize();
@@ -162,8 +162,8 @@ class Program extends CI_Controller
                     $config['create_thumb'] = FALSE;
                     $config['maintain_ratio'] = FALSE;
                     $config['quality'] = '50%';
-                    $config['width'] = 100;
-                    $config['height'] = 200;
+                    $config['width'] = 340;
+                    $config['height'] = 360;
                     $config['new_image'] = 'template/assets/gambar_program/' . $gbr['file_name'];
                     
                     $this->load->library('image_lib', $config);

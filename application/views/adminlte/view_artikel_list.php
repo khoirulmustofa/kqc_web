@@ -66,7 +66,7 @@
 				</div>
 
 			</div>
-			<?php $this->load->view('adminlte/sidebar');?>		
+			<?php $this->load->view('adminlte/view_sidebar');?>		
 		</div>
 	</section>
 </div>

@@ -53,40 +53,44 @@
 
 						<div class="box-body table-responsive no-padding">
 							<table class="table table-bordered table-striped table-hover">
-								<tr>
-									<th>No</th>
-									<th>Kategori</th>
-									<th>Username</th>
-									<th>Judul</th>
-									<th>Hari</th>
-									<th>Tanggal</th>
-									<th>View</th>
-									<th>Tag</th>
-									<th>Action</th>
-								</tr><?php
+								<thead style="font-size: medium;">
+									<tr>
+										<th>No</th>
+										<th>Kategori</th>
+										<th>Username</th>
+										<th>Judul</th>
+										<th>Hari</th>
+										<th>Tanggal</th>
+										<th>View</th>
+										<th>Tag</th>
+										<th style="text-align: center">Action</th>
+									</tr>
+								</thead>
+								<tbody>
+								<?php
         foreach ($artikel_data as $artikel) {
             ?>
                 <tr>
-									<td><?php echo ++$start ?></td>
-									<td><?php echo $artikel->kategori_nama ?></td>
-									<td><?php echo $artikel->artikel_username ?></td>
-									<td><?php echo $artikel->artikel_judul ?></td>
-									<td><?php echo $artikel->artikel_hari ?></td>
-									<td><?php echo $artikel->artikel_tanggal ?></td>
-									<td><?php echo $artikel->artikel_view ?></td>
-									<td><?php echo $artikel->artikel_tag ?></td>
-									<td style="text-align: center">
+										<td><?php echo ++$start ?></td>
+										<td><?php echo $artikel->kategori_nama ?></td>
+										<td><?php echo $artikel->artikel_username ?></td>
+										<td><?php echo $artikel->artikel_judul ?></td>
+										<td><?php echo $artikel->artikel_hari ?></td>
+										<td><?php echo $artikel->artikel_tanggal ?></td>
+										<td><?php echo $artikel->artikel_view ?></td>
+										<td><?php echo $artikel->artikel_tag ?></td>
+										<td style="text-align: center">
 				<?php
             echo anchor(site_url('admin/artikel/update/' . $artikel->artikel_id), 'Update', 'class="btn btn-primary btn-xs"');
             echo ' | ';
             echo anchor(site_url('admin/artikel/delete/' . $artikel->artikel_id), 'Delete', 'onclick="javasciprt: return confirm(\'Are You Sure ?\')" class="btn btn-danger btn-xs"');
             ?>
 			</td>
-								</tr>
+									</tr>
                 <?php
         }
-        ?>
-        </table>
+        ?></tbody>
+							</table>
 						</div>
 					</div>
 					<div class="box-footer clearfix">

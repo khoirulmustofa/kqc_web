@@ -84,4 +84,41 @@ class Program extends CI_Controller
         );
         $this->template->load(template() . '/main_template', template() . '/view_program_list', $data);
     }
+    
+    public function detail($artikel_judul_seo)
+    {
+        $row = $this->Program_model->get_artikel_by_judul_seo($artikel_judul_seo)->row();
+        
+        $kategori = $this->Kategori_model->get_all_kategori()->result();
+        $tag = $this->Tag_model->get_all_tag()->result();
+        
+        if ($row) {
+            $data = array(
+                'artikel_id' => $row->artikel_id,
+                'kategori_id' => $row->kategori_id,
+                'artikel_username' => $row->artikel_username,
+                'artikel_judul' => $row->artikel_judul,
+                'artikel_judul_seo' => $row->artikel_judul_seo,
+                'artikel_isi' => $row->artikel_isi,
+                'artikel_hari' => $row->artikel_hari,
+                'artikel_tanggal' => $row->artikel_tanggal,
+                'artikel_gambar' => $row->artikel_gambar,
+                'artikel_view' => $row->artikel_view,
+                'artikel_tag' => $row->artikel_tag,
+                'kategori_nama' => $row->kategori_nama,
+                'kategori_seo' => $row->kategori_seo,
+                'cari' => NULL,
+                'action' => site_url('artikel'),
+                'tag_data' => $tag,
+                'kategori_data' => $kategori,
+                'komentar_data' => $this->Komentar_model->get_komentar_by_artikel_id($row->artikel_id),
+                'menu' => "Artikel",
+                'page' => $row->artikel_judul
+            );
+            $this->template->load(template() . '/main_template', template() . '/view_artikel_detail', $data);
+        } else {
+            $this->session->set_flashdata('message', 'Record Not Found');
+            redirect(site_url('artikel'));
+        }
+    }
 }

@@ -74,7 +74,7 @@
 							<input type="hidden" name="artikel_gambar_1"
 								value="<?php echo $artikel_gambar_1; ?>" /> <input type="hidden"
 								name="artikel_id" value="<?php echo $artikel_id; ?>" />
-							<button type="submit" class="btn btn-success"><?php echo $button ?></button>
+							<button type="submit" class="btn btn-success pull-right"><?php echo $button.' '.$page ?></button>
 							<a href="<?php echo site_url('admin/artikel') ?>"
 								class="btn btn-default">Batal</a>
 						</div>
