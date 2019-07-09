@@ -23,7 +23,7 @@ class Kategori extends CI_Controller
             $config['first_url'] = base_url() . 'admin/kategori/';
         }
 
-        $config['per_page'] = 5;
+        $config['per_page'] = 10;
         $config['page_query_string'] = TRUE;
         $config['total_rows'] = $this->Kategori_model->get_total_rows_kategori($cari);
         $kategori = $this->Kategori_model->get_limit_data_kategori($config['per_page'], $start, $cari)->result();
@@ -50,6 +50,7 @@ class Kategori extends CI_Controller
             'kategori_id' => set_value('kategori_id'),
             'kategori_nama' => set_value('kategori_nama'),
             'kategori_seo' => set_value('kategori_seo'),
+            'js_extend' => "",
             'button' => 'Buat',
             'page' => "Kategori"
         );
@@ -84,6 +85,7 @@ class Kategori extends CI_Controller
                 'kategori_id' => set_value('kategori_id', $row->kategori_id),
                 'kategori_nama' => set_value('kategori_nama', $row->kategori_nama),
                 'kategori_seo' => set_value('kategori_seo', $row->kategori_seo),
+                'js_extend' => "",
                 'button' => 'Update',
                 'page' => "Kategori"
             );

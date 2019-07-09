@@ -23,7 +23,7 @@ class Tag extends CI_Controller
             $config['first_url'] = base_url() . 'admin/tag/';
         }
 
-        $config['per_page'] = 5;
+        $config['per_page'] = 10;
         $config['page_query_string'] = TRUE;
         $config['total_rows'] = $this->Tag_model->get_total_rows_tag($cari);
         $tag = $this->Tag_model->get_limit_data_tag($config['per_page'], $start, $cari)->result();
@@ -49,6 +49,7 @@ class Tag extends CI_Controller
             'action' => site_url('admin/tag/create_action'),
             'tag_id' => set_value('tag_id'),
             'tag_nama' => set_value('tag_nama'),
+            'js_extend' => "",
             'button' => 'Buat',
             'page' => "Tag"
         );
@@ -82,6 +83,7 @@ class Tag extends CI_Controller
                 'action' => site_url('admin/tag/update_action'),
                 'tag_id' => set_value('tag_id', $row->tag_id),
                 'tag_nama' => set_value('tag_nama', $row->tag_nama),
+                'js_extend' => "",
                 'button' => 'Update',
                 'page' => "Tag"
             );

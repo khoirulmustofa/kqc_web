@@ -24,7 +24,7 @@ class Carousel extends CI_Controller
             $config['first_url'] = base_url() . 'admin/carousel/';
         }
 
-        $config['per_page'] = 10;
+        $config['per_page'] = 5;
         $config['page_query_string'] = TRUE;
         $config['total_rows'] = $this->Carousel_model->total_rows_carousel($cari);
         $carousel = $this->Carousel_model->get_limit_data_carousel($config['per_page'], $start, $cari)->result();
@@ -53,6 +53,7 @@ class Carousel extends CI_Controller
             'carousel_nama' => set_value('carousel_nama'),
             'carousel_gambar_1' => set_value('carousel_gambar'),
             'carousel_link' => set_value('carousel_link'),
+            'js_extend' => "",
             'page' => 'Carousel'
         );
 
@@ -118,6 +119,7 @@ class Carousel extends CI_Controller
                 'carousel_nama' => set_value('carousel_nama', $row->carousel_nama),
                 'carousel_gambar_1' => set_value('carousel_gambar', $row->carousel_gambar),
                 'carousel_link' => set_value('carousel_link', $row->carousel_link),
+                'js_extend' => "",
                 'page' => 'Carousel'
             );
             $this->template->load('admin/admin_main_template', 'admin/view_carousel_form', $data);

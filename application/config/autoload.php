@@ -155,5 +155,6 @@ $autoload['model'] = array(
     'Kategori_model',
     'Tag_model',
     'Program_model',
-    'Carousel_model'
+    'Carousel_model',
+    'Tentang_kami_model'
 );
