@@ -10,11 +10,12 @@ class Sedekah extends CI_Controller
         parent::__construct();
     }
 
-    public function cara_sedekah()
+    public function index()
     {
         $data = array(
-            'page' => "manajemen"
+            'menu' => "Sedekah",
+            'page' => "Cara Sedekah",
         );
-        $this->template->load(template() . '/main_template', template() . '/view_cara_sedekah', $data);
+        $this->template->load(template() . '/main_template', template() . '/view_sedekah', $data);
     }
 }

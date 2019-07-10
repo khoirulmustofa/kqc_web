@@ -64,16 +64,16 @@
 						id="navbar-collapse">
 						<ul class="nav navbar-nav">
 							<li <?php echo  $menu=="Home" ? 'class="active"' :''?>><a href="<?php echo site_url('beranda')?>">BERANDA</a></li>
-							<li class="dropdown"><a href="#" class="dropdown-toggle"
+							<li <?php echo  $menu=="Tentang_kami" ? 'class="active"' :''?>class="dropdown"><a href="#" class="dropdown-toggle"
 								data-toggle="dropdown">TENTANG KAMI <span class="caret"></span></a>
 								<ul class="dropdown-menu" role="menu">
 									<li><a href="<?php echo site_url('manajemen')?>">Manajemen</a></li>
 									<li><a href="<?php echo site_url('sejarah')?>">Sejarah</a></li>
 									<li><a href="<?php echo site_url('visi-misi')?>">Visi Misi</a></li>
-									<li><a href="#">KQC Methode</a></li>
-									<li><a href="#">Legal Formal</a></li>
-									<li><a href="#">Salam Pimpinan</a></li>
-									<li><a href="#">Privacy Policy</a></li>
+									<li><a href="<?php echo site_url('methode')?>">KQC Methode</a></li>
+									<li><a href="<?php echo site_url('legal-formal')?>">Legal Formal</a></li>
+									<li><a href="<?php echo site_url('salam-pimpinan')?>">Salam Pimpinan</a></li>
+									
 								</ul></li>
 							<li class="dropdown"><a href="#" class="dropdown-toggle"
 								data-toggle="dropdown">PROGRAM <span class="caret"></span></a>
@@ -85,14 +85,7 @@
 									<li><a href="<?php echo site_url('pengembangan-masyarakat')?>">Pengembangan
 											Masyarakat</a></li>
 								</ul></li>
-							<li class="dropdown"><a href="#" class="dropdown-toggle"
-								data-toggle="dropdown">SEDEKAH <span class="caret"></span></a>
-								<ul class="dropdown-menu" role="menu">
-									<li><a href="<?php echo site_url('cara-sedekah')?>">Cara
-											Sedekah</a></li>
-									<li><a href="#">Konfirmasi Sedekah</a></li>
-									<li><a href="#">Jemput Sedekah</a></li>
-								</ul></li>
+							<li><a href="<?php echo site_url('sedekah')?>">SEDEKAH</a></li>
 							<li <?php echo  $menu=="Artikel" ? 'class="active"' :''?>><a
 								href="<?php echo site_url('artikel')?>">ARTIKEL</a></li>
 							<li><a href="#">KQC SCHOOL</a></li>

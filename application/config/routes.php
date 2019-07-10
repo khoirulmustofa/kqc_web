@@ -2,7 +2,7 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 
-$route['default_controller'] = 'welcome';
+$route['default_controller'] = 'beranda';
 $route['artikel/(:any)']='artikel/detail/$1';
 $route['kirim_komentar']='artikel/insert_komentar';
 
@@ -10,6 +10,9 @@ $route['kirim_komentar']='artikel/insert_komentar';
 $route['manajemen']='tentang_kami/manajemen';
 $route['sejarah']='tentang_kami/sejarah';
 $route['visi-misi']='tentang_kami/visimisi';
+$route['methode']='tentang_kami/methode';
+$route['legal-formal']='tentang_kami/legal_formal';
+$route['salam-pimpinan']='tentang_kami/salam_pimpinan';
 
 // Program
 $route['pendidikan-dakwah']='program/pendidikan_dakwah';
@@ -18,7 +21,7 @@ $route['pengembangan-masyarakat']='program/pengembangan_masyarakat';
 //$route['seeder']='artikel/seeder';
 
 //Sedekah
-$route['cara-sedekah']='sedekah/cara_sedekah';
+$route['sedekah']='sedekah';
 
 
 $route['404_override'] = '';
