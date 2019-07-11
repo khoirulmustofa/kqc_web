@@ -4,9 +4,8 @@
 
 		<h1>Hubungi Kami</h1>
 		<ol class="breadcrumb">
-			<li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-			<li><a href="#">Layout</a></li>
-			<li class="active">Top Navigation</li>
+			<li><a href="#"><i class="fa fa-dashboard"></i> Beranda</a></li>
+			<li class="active">Hubungi Kami</li>
 		</ol>
 	</section>
 	<!-- Main content -->
@@ -15,7 +14,7 @@
 			<div class="col-md-4">
 				<div class="box box-success text-center">
 					<div class="box-body box-profile">
-						<img
+						<img class="img-responsive" style="width: 100%"
 							src="<?php echo base_url('template/').template()?>/dist/img/avatar5.png"
 							alt="User Avatar">
 					</div>

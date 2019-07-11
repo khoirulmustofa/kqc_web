@@ -13,8 +13,8 @@ class Hubungi_kami extends CI_Controller
     public function index()
     {
         $data = array(
-            'page' => "artikel_list",
-            'Hallo' => "jj"
+            'menu' => "Hubungi_kami",
+            'page' => "Hubungi Kami",
         );
         $this->template->load(template() . '/main_template', template() . '/view_hubungi_kami', $data);
     }

@@ -42,6 +42,23 @@
 		no-repeat center;
 	height: 150px;
 }
+
+.float {
+	position: fixed;
+	width: 60px;
+	height: 60px;
+	bottom: 40px;
+	right: 40px;
+	background-color: #00a65a;
+	color: #FFF;
+	border-radius: 50px;
+	text-align: center;
+	box-shadow: 2px 2px 3px #999;
+}
+
+.my-float {
+	margin-top: 22px;
+}
 </style>
 </head>
 <!-- ADD THE CLASS layout-top-nav TO REMOVE THE SIDEBAR. -->
@@ -63,17 +80,21 @@
 					<div class="collapse navbar-collapse pull-left"
 						id="navbar-collapse">
 						<ul class="nav navbar-nav">
-							<li <?php echo  $menu=="Home" ? 'class="active"' :''?>><a href="<?php echo site_url('beranda')?>">BERANDA</a></li>
-							<li <?php echo  $menu=="Tentang_kami" ? 'class="active"' :''?>class="dropdown"><a href="#" class="dropdown-toggle"
+							<li <?php echo  $menu=="Home" ? 'class="active"' :''?>><a
+								href="<?php echo site_url('beranda')?>">BERANDA</a></li>
+							<li <?php echo  $menu=="Tentang_kami" ? 'class="active"' :''?>
+								class="dropdown"><a href="#" class="dropdown-toggle"
 								data-toggle="dropdown">TENTANG KAMI <span class="caret"></span></a>
 								<ul class="dropdown-menu" role="menu">
 									<li><a href="<?php echo site_url('manajemen')?>">Manajemen</a></li>
 									<li><a href="<?php echo site_url('sejarah')?>">Sejarah</a></li>
 									<li><a href="<?php echo site_url('visi-misi')?>">Visi Misi</a></li>
 									<li><a href="<?php echo site_url('methode')?>">KQC Methode</a></li>
-									<li><a href="<?php echo site_url('legal-formal')?>">Legal Formal</a></li>
-									<li><a href="<?php echo site_url('salam-pimpinan')?>">Salam Pimpinan</a></li>
-									
+									<li><a href="<?php echo site_url('legal-formal')?>">Legal
+											Formal</a></li>
+									<li><a href="<?php echo site_url('salam-pimpinan')?>">Salam
+											Pimpinan</a></li>
+
 								</ul></li>
 							<li class="dropdown"><a href="#" class="dropdown-toggle"
 								data-toggle="dropdown">PROGRAM <span class="caret"></span></a>
@@ -89,7 +110,8 @@
 							<li <?php echo  $menu=="Artikel" ? 'class="active"' :''?>><a
 								href="<?php echo site_url('artikel')?>">ARTIKEL</a></li>
 							<li><a href="#">KQC SCHOOL</a></li>
-							<li><a href="<?php echo site_url('hubungi_kami')?>">HUBUNGI KAMI</a></li>
+							<li <?php echo  $menu=="Hubungi_kami" ? 'class="active"' :''?>><a
+								href="<?php echo site_url('hubungi-kami')?>">HUBUNGI KAMI</a></li>
 
 						</ul>
 
@@ -148,6 +170,7 @@
 		</header>
 		<!-- Full Width Column -->
 		<div class="content-wrapper" style="padding-top: 50px">
+		
   <?php echo $contents;?>
   <!-- /.container -->
 		</div>

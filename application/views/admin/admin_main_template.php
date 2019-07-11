@@ -227,6 +227,9 @@
 					<li><a href="<?php echo site_url('admin/carousel')?>"><i class="fa fa-circle-o text-yellow"></i> <span>Carousel</span></a></li>
 					<li><a href="<?php echo site_url('admin/tag')?>"><i class="fa fa-circle-o text-aqua"></i> <span>Tag</span></a></li>
 					<li><a href="<?php echo site_url('admin/tentang_kami')?>"><i class="fa fa-circle-o text-aqua"></i> <span>Tentang Kami</span></a></li>
+					<li><a href="<?php echo site_url('admin/rekening_sedekah')?>"><i class="fa fa-circle-o text-red"></i> <span>Rekening Sedekah</span></a></li>
+					<li><a href="<?php echo site_url('admin/kategori')?>"><i class="fa fa-circle-o text-yellow"></i> <span>Kategori</span></a></li>
+					<li><a href="<?php echo site_url('admin/tag')?>"><i class="fa fa-circle-o text-aqua"></i> <span>Tag</span></a></li>
 				</ul>
 			</section>
 			<!-- /.sidebar -->

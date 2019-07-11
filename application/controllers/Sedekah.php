@@ -12,9 +12,11 @@ class Sedekah extends CI_Controller
 
     public function index()
     {
+        $rekening_sedekah = $this->Rekening_sedekah_model->get_all_rekening_sedekah()->result();
         $data = array(
             'menu' => "Sedekah",
-            'page' => "Cara Sedekah",
+            'page' => "Sedekah",
+            'rekening_sedekah_data' => $rekening_sedekah
         );
         $this->template->load(template() . '/main_template', template() . '/view_sedekah', $data);
     }

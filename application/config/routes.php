@@ -23,6 +23,10 @@ $route['pengembangan-masyarakat']='program/pengembangan_masyarakat';
 //Sedekah
 $route['sedekah']='sedekah';
 
+// Hubungi_kami
+
+$route['hubungi-kami']='hubungi_kami';
+
 
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;

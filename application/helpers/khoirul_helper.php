@@ -3,7 +3,7 @@
 // untuk ambil tempate yang aktif
 function template()
 {
-    return "adminlte";
+    return "2019";
 }
 
 function limit_words($string, $word_limit)
